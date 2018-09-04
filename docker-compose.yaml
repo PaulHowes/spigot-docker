@@ -1,0 +1,16 @@
+version "3.2"
+services:
+  spigot:
+    image: spigot-docker:${TAG:-latest}
+    build:
+      context: .
+      dockerFile: docker/Dockerfile
+    ports:
+      - "25565:25565"
+    volumes:
+      - type: bind
+        source: ${CONFIG_DIR:-/tmp/spigot/config}
+        target: /var/lib/spigot/config
+      - type: bind
+        source: ${WORLDS_DIR:-/tmp/spigot/worlds}
+        target: /var/lib/spigot/worlds
