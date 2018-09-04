@@ -6,8 +6,9 @@ RUN mkdir -p /var/lib/spigot/config
 RUN mkdir -p /var/lib/spigot/worlds
 
 # Copies the JAR files into the container.
-COPY ../build/craftbukkit-${VERSION}.jar /opt/spigot/bin/craftbukkit.jar
-COPY ../build/spigot-${VERSION}.jar /opt/spigot/bin/spigot.jar
+ARG SPIGOT_REV
+COPY craftbukkit-${SPIGOT_REV}.jar /opt/spigot/bin/craftbukkit.jar
+COPY spigot-${SPIGOT_REV}.jar /opt/spigot/bin/spigot.jar
 
 # Default Minecraft server port
 EXPOSE 25565/tcp
